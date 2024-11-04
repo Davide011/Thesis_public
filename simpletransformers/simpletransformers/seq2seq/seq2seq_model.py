@@ -9,6 +9,9 @@ from dataclasses import asdict
 from multiprocessing import Pool, cpu_count
 from pathlib import Path
 import functools
+import sys
+
+import pickle
 
 import numpy as np
 import pandas as pd
@@ -892,6 +895,19 @@ class Seq2SeqModel:
                                 if (not self.distributed) and args.predict_during_training:
                                     self.predict(test_data, output_dir_current, skip_model_moving=True)
 
+                                        # New condition for distributed setups
+                                if self.distributed and args.predict_during_training:
+                                    if self.rank == 0:
+                                        print("Starting prediction during training (distributed)")
+                                        sys.stdout.flush()
+
+                                    self.predict(test_data, output_dir_current, skip_model_moving=True)
+
+                                    if self.rank == 0:
+                                        print("Prediction during training (distributed) completed")
+                                        sys.stdout.flush()
+                                
+
                                 model.train()
 
                     # relation mean shift
@@ -1031,6 +1047,25 @@ class Seq2SeqModel:
             cutoff: if set, truncate the prediction set size
         """  # noqa: ignore flake8"
 
+        # my part for distibuted gpu###################################################################
+
+        print("Starting predict function")
+        sys.stdout.flush()
+
+        # Initialize distributed settings
+        if dist.is_available() and dist.is_initialized():
+            rank = dist.get_rank()
+            world_size = dist.get_world_size()
+            pred_data = pred_data[rank::world_size]
+            print(f"Distributed mode: rank {rank}, Starting predict function {world_size}")
+        else:
+            rank = 0
+            world_size = 1
+            print("Non-distributed mode")
+
+        #######################################################################################################################################################
+
+
         all_items = []
 
         model = self.model.module if hasattr(self.model, "module") else self.model
@@ -1114,7 +1149,7 @@ class Seq2SeqModel:
         #     ]
 
         assert len(outputs) == len(to_predict)
-        
+         # Processing and storing outputs in all_items
         for i in range(len(to_predict)):
             outputs[i] = outputs[i].split("</a>")[0].strip()+"</a>"
             outputs[i] = "".join(outputs[i].split())
@@ -1124,13 +1159,56 @@ class Seq2SeqModel:
             all_items.append(pred_data[i])
             all_items[-1]["model_output"] = outputs[i] 
 
-        os.makedirs(output_dir, exist_ok=True)
-        with open(os.path.join(output_dir, out_file), "w", encoding='utf-8') as f:
-            json.dump(all_items, f)
+        ###################################################################################################
+        
+        print(f"Process {rank} finished generating outputs")
+        sys.stdout.flush()
+
+        if dist.is_available() and dist.is_initialized():
+            os.makedirs(output_dir, exist_ok=True)
+            print(f"Process {rank}/{world_size} has {len(all_items)} items")
+            sys.stdout.flush()
+
+            partial_file = os.path.join(output_dir, f"partial_{rank}_{out_file}")
+            with open(partial_file, 'w', encoding='utf-8') as f:
+                json.dump(all_items, f)
+            print(f"Process {rank} saved partial results to {partial_file}")
+            sys.stdout.flush()
+
+            dist.barrier()
+
+            if rank == 0:
+                combined_items = []
+                for r in range(world_size):
+                    part_file = os.path.join(output_dir, f"partial_{r}_{out_file}")
+                    if os.path.exists(part_file):
+                        with open(part_file, 'r', encoding='utf-8') as f:
+                            part_items = json.load(f)
+                            combined_items.extend(part_items)
+                        os.remove(part_file)
+                        print(f"Rank 0: Added {len(part_items)} items from rank {r}")
+                        sys.stdout.flush()
+
+                final_file = os.path.join(output_dir, out_file)
+                with open(final_file, 'w', encoding='utf-8') as f:
+                    json.dump(combined_items, f)
+                print(f"Rank 0: Saved {len(combined_items)} total items to {final_file}")
+                sys.stdout.flush()
+
+            dist.barrier()
+
+        else:
+            os.makedirs(output_dir, exist_ok=True)
+            with open(os.path.join(output_dir, out_file), 'w', encoding='utf-8') as f:
+                json.dump(all_items, f)
+
+        print("Predict function completed")
+        sys.stdout.flush()
 
         self.lm_tokenizer.padding_side = "right"
-        
+    
 
+    ##############################
     def _decode(self, output_id):
         return self.decoder_tokenizer.decode(
             output_id,
