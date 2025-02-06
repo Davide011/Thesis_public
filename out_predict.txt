@@ -1,0 +1,7 @@
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+/home/s220331/GROK/Thesis/transformers/src/transformers/generation/utils.py:1392: UserWarning: Input length of input_ids is 3, but `max_length` is set to 3. This can lead to unexpected behavior. You should consider increasing `max_new_tokens`.
+  warnings.warn(
+Input: <e_13><r_8><r_11>
+Prediction: <e_13><r_8><r_11><e_108>

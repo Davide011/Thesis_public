@@ -10,11 +10,14 @@ torch.cuda.empty_cache()
 from tqdm import tqdm
 tqdm(disable=True)
 import torch.distributed as dist
-
+import torch
+# Clear GPU cache before starting training
+torch.cuda.empty_cache()
 
 def main():
     
     parser = argparse.ArgumentParser()
+    #parser.add_argument("--evaluate_during_training_mydata", action="store_true", help="Whether to eval model during training with my custom dataset ") 
 
      # Adding arguments
     parser.add_argument('--local_rank', type=int, default=int(os.environ.get('LOCAL_RANK', -1)), help="Local rank for distributed training")
@@ -32,6 +35,12 @@ def main():
     parser.add_argument("--no_mlp", action="store_true", help="Whether disable mlp layers.")
     parser.add_argument("--share_mlp", action="store_true", help="Whether share mlp weights across layers.")
     parser.add_argument("--add_recurrence", action="store_true", help="Whether run the layers twice.")
+
+    parser.add_argument("--recurrence_iteration_3", action="store_true", help="Whether run the layers twice.")
+    parser.add_argument("--my_eval_data", action="store_true", help="Whether run the layers twice.")
+    parser.add_argument("--scale_forward", default=1, type=float, help="scale forwardd pass")
+
+
     parser.add_argument("--re_embed", action="store_true", help="Whether add re-embedding during recurrence.")
     parser.add_argument("--re_embed_temp", default=1.0, type=float, help="softmax temperature for re-embedding")
     parser.add_argument("--relation_mean_shift", action="store_true", help="Whether perform OOD relation mean shift w.r.t. ID relations in lm_head")
@@ -78,14 +87,13 @@ def main():
     parser.add_argument('--rank', default=-1, type=int, help='node rank for distributed training')
     parser.add_argument('--dist-url', default='env://', type=str, help='url used to set up distributed training')
     parser.add_argument('--dist-backend', default='nccl', type=str, help='distributed backend')
-    #parser.add_argument('--local_rank', default=-1, type=int, help='local rank for distributed training')  # change mine defined above now
+    #parser.add_argument('--local_rank', default=-1, type=int, help='local rank for distributed training')  # change mine defined above now (otherwise problems with multy gpu)
     parser.add_argument('--gpu', default=None, type=int)
 
     args = parser.parse_args()
 
-    #### mine for muly gpu
-
-    ##############################################
+    
+   
     if (
         os.path.exists(args.output_dir)
         and os.listdir(args.output_dir)
@@ -104,8 +112,13 @@ def main():
     else:
         train_df = None
 
-    if args.do_eval or args.evaluate_during_training:
-        eval_df = read_data_source_target(os.path.join(args.data_dir, "valid.json"))
+    #if args.do_eval:
+        # eval_df = read_data_source_target(os.path.join(args.data_dir, "valid.json"))   # changed before was v
+    if args.evaluate_during_training or args.do_eval:
+        if args.my_eval_data:
+            eval_df= read_data_source_target(os.path.join(args.data_dir, "valid_iid.json"))  # if want to implement this has to change a lot of things also in 2eq2seq.py file to do eval 2 times
+        else:
+            eval_df = read_data_source_target(os.path.join(args.data_dir, "valid.json"))   # changed before was "valid.json"
     else:
         eval_df = None
 
@@ -167,7 +180,7 @@ def main():
         "dist_url": args.dist_url,
         "dist_backend": args.dist_backend,
     }
-
+    
     # Initialize model
     model = Seq2SeqModel(
         model_type=args.model_type,
@@ -182,10 +195,13 @@ def main():
         share_mlp=args.share_mlp,
         add_memory=args.add_memory,
         add_recurrence=args.add_recurrence,
+        recurrence_iteration_3= args.recurrence_iteration_3,
         re_embed=args.re_embed,
         re_embed_temp=args.re_embed_temp,
-        relation_mean_shift=args.relation_mean_shift,
+        relation_mean_shift=args.relation_mean_shift
     )
+    #scale_forward=args.scale_forward,   # added by me davide
+    
 
     # Train the model
     if args.do_train:

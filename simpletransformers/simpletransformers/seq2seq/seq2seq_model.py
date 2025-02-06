@@ -174,6 +174,7 @@ class Seq2SeqModel:
         share_mlp=False,
         add_memory=False,
         add_recurrence=False,
+        recurrence_iteration_3=False,
         re_embed=False,
         re_embed_temp=None,
         cuda_device=-1,
@@ -334,6 +335,10 @@ class Seq2SeqModel:
         if add_recurrence:
             print("***in recurrence mode***")
             self.language_model.config.add_recurrence = add_recurrence ####
+            if recurrence_iteration_3:
+                print("***in recurrence mode  3 recurrences!!***")
+                self.language_model.config.recurrence_iteration_3 = recurrence_iteration_3
+
 
         if re_embed:
             assert add_recurrence
@@ -479,6 +484,11 @@ class Seq2SeqModel:
         print("\teos:", lm_tokenizer._eos_token, lm_tokenizer.eos_token_id)
         print("\tpad:", lm_tokenizer._pad_token, lm_tokenizer.pad_token_id)
 
+        ###################
+
+        # Print the mask token and its ID
+        print("\tmask:", lm_tokenizer.mask_token, lm_tokenizer.mask_token_id)
+            ############################################################################################
         tb_writer = SummaryWriter(log_dir=args.tensorboard_dir)
         
         if self.distributed:
@@ -882,8 +892,8 @@ class Seq2SeqModel:
                                     **kwargs,
                                 )
                                 training_progress_scores["global_step"].append(global_step)
-                                training_progress_scores["epoch"].append(-1)
-                                training_progress_scores["train_loss"].append(-1.0)
+                                training_progress_scores["epoch"].append(-1)  # this is a placeholder (not going to be changed in csv)
+                                training_progress_scores["train_loss"].append(-1.0)  # this is a placeholder (not going to be changed in csv)
                                 for key in results:
                                     training_progress_scores[key].append(results[key])
                                 report = pd.DataFrame(training_progress_scores)
@@ -1086,6 +1096,7 @@ class Seq2SeqModel:
         self.lm_tokenizer.padding_side = "left" 
         self.lm_tokenizer.pad_token = self.lm_tokenizer.eos_token
         self.lm_tokenizer.pad_token_id = self.lm_tokenizer.eos_token_id
+                                    
 
         all_outputs = []
         all_retrieved = []

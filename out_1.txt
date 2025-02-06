@@ -1,0 +1,50 @@
+/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py:180: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[W socket.cpp:426] [c10d] The server socket has failed to bind to [::]:12345 (errno: 98 - Address already in use).
+[W socket.cpp:426] [c10d] The server socket has failed to bind to 0.0.0.0:12345 (errno: 98 - Address already in use).
+[E socket.cpp:462] [c10d] The server socket has failed to listen on any local network address.
+Traceback (most recent call last):
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py", line 195, in <module>
+    main()
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py", line 191, in main
+    launch(args)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py", line 176, in launch
+    run(args)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/run.py", line 753, in run
+    elastic_launch(
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 132, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 237, in launch_agent
+    result = agent.run()
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 129, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    result = self._invoke_run(role)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 844, in _invoke_run
+    self._initialize_workers(self._worker_group)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 129, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 678, in _initialize_workers
+    self._rendezvous(worker_group)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 129, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 538, in _rendezvous
+    store, group_rank, group_world_size = spec.rdzv_handler.next_rendezvous()
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 55, in next_rendezvous
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: The server socket has failed to listen on any local network address. The server socket has failed to bind to [::]:12345 (errno: 98 - Address already in use). The server socket has failed to bind to 0.0.0.0:12345 (errno: 98 - Address already in use).

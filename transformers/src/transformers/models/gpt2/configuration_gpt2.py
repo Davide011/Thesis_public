@@ -164,6 +164,7 @@ class GPT2Config(PretrainedConfig):
         use_cache=True,
         bos_token_id=50256,
         eos_token_id=50256,
+        mask_token_id=50255,
         scale_attn_by_inverse_layer_idx=False,
         reorder_and_upcast_attn=False,
         **kwargs,
@@ -192,8 +193,9 @@ class GPT2Config(PretrainedConfig):
 
         self.bos_token_id = bos_token_id
         self.eos_token_id = eos_token_id
+        self.mask_token_id = mask_token_id
 
-        super().__init__(bos_token_id=bos_token_id, eos_token_id=eos_token_id, **kwargs)
+        super().__init__(bos_token_id=bos_token_id, eos_token_id=eos_token_id,mask_token_id=mask_token_id , **kwargs)
 
 
 class GPT2OnnxConfig(OnnxConfigWithPast):

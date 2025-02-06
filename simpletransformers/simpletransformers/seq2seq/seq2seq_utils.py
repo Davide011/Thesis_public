@@ -84,6 +84,10 @@ def preprocess_batch_for_hf_dataset(
         labels = tokenized_example["labels"]
         labels[labels == encoder_tokenizer.pad_token_id] = -100
 
+        #######################
+        # Set mask tokens to -100 to ignore them in loss computation    mio
+        labels[labels == encoder_tokenizer.mask_token_id] = -100
+
         return {
             "input_ids": tokenized_example["input_ids"].squeeze(),
             "attention_mask": tokenized_example["attention_mask"].squeeze(),
@@ -339,11 +343,26 @@ def preprocess_data_bart(data):
             [input_text],
             return_tensors="pt",
         )["input_ids"].squeeze()
-        assert (target_ids[:len(target_prefix_ids)] == target_prefix_ids).all()
+
+        #print("!!!!!!!!!!!!!!!!!! TAGET PREFIX= INPUT id !!!!!!",target_prefix_ids[:20])
+
+        #print("\n !!!!!!!!!!!!!!!!!! TAGET id = OUTPUT !!!!!!",target_ids[:20])
+
+    
+        #assert (target_ids[:len(target_prefix_ids)] == target_prefix_ids).all()   # a take out the assert as it does not hold in case for split 
 
     lm_labels = target_ids.clone()
     lm_labels[lm_labels == lm_tokenizer.pad_token_id] = -100
     lm_labels[:len(target_prefix_ids)] = -100  # no loss on prefix tokens
+
+    # Set mask tokens to -100 (no loss will be computed on mask tokens)
+    lm_labels[lm_labels == lm_tokenizer.mask_token_id] = -100
+
+    ####################  mio 
+        # Ensure <mask> tokens are not considered in the loss calculation
+    #mask_positions = torch.where(target_ids == mask_token_id)[0]
+    #lm_labels[mask_positions] = -100
+
     
     return {
         "target_ids": target_ids,

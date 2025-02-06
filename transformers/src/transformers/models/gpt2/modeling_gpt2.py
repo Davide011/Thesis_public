@@ -862,6 +862,7 @@ class GPT2Model(GPT2PreTrainedModel):
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,
         add_recurrence=False,
+        recurrence_iteration_3 = False ,
         re_embed=False,
         re_embed_temp=None,
     ) -> Union[Tuple, BaseModelOutputWithPastAndCrossAttentions]:
@@ -886,7 +887,10 @@ class GPT2Model(GPT2PreTrainedModel):
             raise ValueError("You have to specify either input_ids or inputs_embeds")
         
         if add_recurrence:
-            recur_step = 2
+            if recurrence_iteration_3:
+                recur_step = 3
+            else:
+                recur_step = 2
         else:
             recur_step = 1
 

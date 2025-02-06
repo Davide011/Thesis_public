@@ -1,18 +1,18 @@
 #!/bin/bash
+# file knowledge sharing  (== --add_recurrence), N_LAYER= 4 instead of 8
 
 # Set environment variables
 MODEL_PATH=gpt2
-DATASET=data/composition_ex_SMALL.30.3.12.6/
-WEIGHT_DECAY=0.01
-N_LAYERS=12
-GPU=5,7
-OUTPUT_DIR=/scratch/davide/model_paper/outputs_multy # Change this to your desired output directory
+DATASET=/home/s220331/GROK/Thesis/data_MIO/SPLIT_composition.200.20.12.6/ # /home/s220331/GROK/Thesis/data/composition_SMALL.200.20.18.0/  #/home/s220331/GROK/Thesis/data_MIO/SPLIT_composition.200.20.12.6/
+WEIGHT_DECAY=0.3
+N_LAYERS=8
+GPU=2,1
+OUTPUT_DIR=/scratch/davide/model_paper/test_cancel_0 # Change this to your desired output directory
 
-# Execute the training script with the specified arguments   (they used 4 gpus I think!!)
-export OMP_NUM_THREADS=4
+
 #CUDA_VISIBLE_DEVICES=$GPU python main.py \
 #CUDA_VISIBLE_DEVICES=5,7 torchrun --nproc_per_node=2 --master_port=12345 main_multy_GPU.py \
-CUDA_VISIBLE_DEVICES=5,7 python -m torch.distributed.launch --nproc_per_node=2 --master_port 12345 main_multy_GPU.py \
+CUDA_VISIBLE_DEVICES=3,4 python -m torch.distributed.launch --nproc_per_node=2 --master_port 12345 main_multy_GPU.py \
     --data_dir $DATASET \
     --model_name_or_path ${MODEL_PATH} \
     --weight_decay $WEIGHT_DECAY \
@@ -35,4 +35,5 @@ CUDA_VISIBLE_DEVICES=5,7 python -m torch.distributed.launch --nproc_per_node=2 -
     --init_weights \
     --add_tokens \
     --n_layer $N_LAYERS \
+    #--add_recurrence
     #--overwrite_output_dir  # remember to add \ above when di-indent this option

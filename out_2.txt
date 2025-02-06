@@ -1,0 +1,506 @@
+/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py:180: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+numpy version:numpy version:  1.26.41.26.4
+
+torch version:torch version:  1.13.1+cu1161.13.1+cu116
+
+transformers version:transformers version:  4.37.0.dev04.37.0.dev0
+
+local gpu count: 2
+***In distributed mode, world_size:2***
+provided local_rank is 0. Setting rank and gpu both to be the same.
+local gpu count: 2
+***In distributed mode, world_size:2***
+provided local_rank is 1. Setting rank and gpu both to be the same.
+setting device complete. device: cuda:1
+/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+setting device complete. device: cuda:0
+/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+...initing weights...
+...initing weights...
+### general model args:
+LanguageModelingArgs(adafactor_beta1=None, adafactor_clip_threshold=1.0, adafactor_decay_rate=-0.8, adafactor_eps=(1e-30, 0.001), adafactor_relative_step=True, adafactor_scale_parameter=True, adafactor_warmup_init=True, adam_betas=(0.9, 0.999), adam_epsilon=1e-08, best_model_dir='outputs/best_model', cache_dir='cache_dir/', config={}, cosine_schedule_num_cycles=0.5, custom_layer_parameters=[], custom_parameter_groups=[], dataloader_num_workers=0, do_lower_case=False, dynamic_quantize=False, early_stopping_consider_epochs=False, early_stopping_delta=0, early_stopping_metric='eval_loss', early_stopping_metric_minimize=True, early_stopping_patience=3, encoding=None, eval_batch_size=2, evaluate_during_training=True, evaluate_during_training_silent=True, evaluate_during_training_steps=2000, evaluate_during_training_verbose=False, evaluate_each_epoch=True, fp16=True, gradient_accumulation_steps=1, learning_rate=0.0001, local_rank=-1, logging_steps=50, loss_type=None, loss_args={}, manual_seed=42, max_grad_norm=1.0, max_seq_length=10, model_name='gpt2', model_type='gpt2', multiprocessing_chunksize=-1, n_gpu=2, no_cache=False, no_save=False, not_saved_args=[], num_train_epochs=20, optimizer='AdamW', output_dir='/scratch/davide/model_paper/outputs_prova_checkpoint_2', overwrite_output_dir=False, polynomial_decay_schedule_lr_end=1e-07, polynomial_decay_schedule_power=1.0, process_count=30, quantized_model=False, reprocess_input_data=True, save_best_model=True, save_eval_checkpoints=False, save_model_every_epoch=False, save_optimizer_and_scheduler=True, save_steps=5000, scheduler='constant_schedule_with_warmup', silent=False, skip_special_tokens=True, tensorboard_dir=None, thread_count=None, tokenizer_name=None, tokenizer_type=None, train_batch_size=2, train_custom_parameters_only=False, use_cached_eval_features=False, use_early_stopping=False, use_hf_datasets=False, use_multiprocessing=False, use_multiprocessing_for_evaluation=True, wandb_kwargs={}, wandb_project=None, warmup_ratio=0.06, warmup_steps=2000, weight_decay=0.01, model_class='LanguageModelingModel', block_size=10, config_name=None, dataset_class=None, dataset_type='None', discriminator_config={}, discriminator_loss_weight=50.0, generator_config={}, max_steps=75000, min_frequency=2, mlm=False, mlm_probability=0.15, sliding_window=False, special_tokens=['<s>', '<pad>', '</s>', '<unk>', '<mask>'], stride=0.8, tie_generator_and_discriminator_embeddings=True, vocab_size=None, clean_text=True, handle_chinese_chars=True, special_tokens_list=[], strip_accents=True)
+### ddp args:
+{'local_rank': 1, 'rank': -1, 'gpu': None, 'world_size': -1, 'dist_url': 'env://', 'dist_backend': 'nccl'}
+lm config:
+GPT2Config {
+  "_name_or_path": "gpt2",
+  "activation_function": "gelu_new",
+  "architectures": [
+    "GPT2LMHeadModel"
+  ],
+  "attn_pdrop": 0.1,
+  "bos_token_id": 50256,
+  "embd_pdrop": 0.1,
+  "eos_token_id": 50256,
+  "initializer_range": 0.02,
+  "layer_norm_epsilon": 1e-05,
+  "model_type": "gpt2",
+  "n_ctx": 1024,
+  "n_embd": 768,
+  "n_head": 12,
+  "n_inner": null,
+  "n_layer": 12,
+  "n_positions": 1024,
+  "no_ln": false,
+  "no_mlp": false,
+  "reorder_and_upcast_attn": false,
+  "resid_pdrop": 0.1,
+  "scale_attn_by_inverse_layer_idx": false,
+  "scale_attn_weights": true,
+  "share_mlp": false,
+  "summary_activation": null,
+  "summary_first_dropout": 0.1,
+  "summary_proj_to_labels": true,
+  "summary_type": "cls_index",
+  "summary_use_proj": true,
+  "task_specific_params": {
+    "text-generation": {
+      "do_sample": true,
+      "max_length": 50
+    }
+  },
+  "transformers_version": "4.37.0.dev0",
+  "use_cache": true,
+  "vocab_size": 50296
+}
+
+### general model args:
+LanguageModelingArgs(adafactor_beta1=None, adafactor_clip_threshold=1.0, adafactor_decay_rate=-0.8, adafactor_eps=(1e-30, 0.001), adafactor_relative_step=True, adafactor_scale_parameter=True, adafactor_warmup_init=True, adam_betas=(0.9, 0.999), adam_epsilon=1e-08, best_model_dir='outputs/best_model', cache_dir='cache_dir/', config={}, cosine_schedule_num_cycles=0.5, custom_layer_parameters=[], custom_parameter_groups=[], dataloader_num_workers=0, do_lower_case=False, dynamic_quantize=False, early_stopping_consider_epochs=False, early_stopping_delta=0, early_stopping_metric='eval_loss', early_stopping_metric_minimize=True, early_stopping_patience=3, encoding=None, eval_batch_size=2, evaluate_during_training=True, evaluate_during_training_silent=True, evaluate_during_training_steps=2000, evaluate_during_training_verbose=False, evaluate_each_epoch=True, fp16=True, gradient_accumulation_steps=1, learning_rate=0.0001, local_rank=-1, logging_steps=50, loss_type=None, loss_args={}, manual_seed=42, max_grad_norm=1.0, max_seq_length=10, model_name='gpt2', model_type='gpt2', multiprocessing_chunksize=-1, n_gpu=2, no_cache=False, no_save=False, not_saved_args=[], num_train_epochs=20, optimizer='AdamW', output_dir='/scratch/davide/model_paper/outputs_prova_checkpoint_2', overwrite_output_dir=False, polynomial_decay_schedule_lr_end=1e-07, polynomial_decay_schedule_power=1.0, process_count=30, quantized_model=False, reprocess_input_data=True, save_best_model=True, save_eval_checkpoints=False, save_model_every_epoch=False, save_optimizer_and_scheduler=True, save_steps=5000, scheduler='constant_schedule_with_warmup', silent=False, skip_special_tokens=True, tensorboard_dir=None, thread_count=None, tokenizer_name=None, tokenizer_type=None, train_batch_size=2, train_custom_parameters_only=False, use_cached_eval_features=False, use_early_stopping=False, use_hf_datasets=False, use_multiprocessing=False, use_multiprocessing_for_evaluation=True, wandb_kwargs={}, wandb_project=None, warmup_ratio=0.06, warmup_steps=2000, weight_decay=0.01, model_class='LanguageModelingModel', block_size=10, config_name=None, dataset_class=None, dataset_type='None', discriminator_config={}, discriminator_loss_weight=50.0, generator_config={}, max_steps=75000, min_frequency=2, mlm=False, mlm_probability=0.15, sliding_window=False, special_tokens=['<s>', '<pad>', '</s>', '<unk>', '<mask>'], stride=0.8, tie_generator_and_discriminator_embeddings=True, vocab_size=None, clean_text=True, handle_chinese_chars=True, special_tokens_list=[], strip_accents=True)
+### ddp args:
+{'local_rank': 0, 'rank': -1, 'gpu': None, 'world_size': -1, 'dist_url': 'env://', 'dist_backend': 'nccl'}
+lm config:
+GPT2Config {
+  "_name_or_path": "gpt2",
+  "activation_function": "gelu_new",
+  "architectures": [
+    "GPT2LMHeadModel"
+  ],
+  "attn_pdrop": 0.1,
+  "bos_token_id": 50256,
+  "embd_pdrop": 0.1,
+  "eos_token_id": 50256,
+  "initializer_range": 0.02,
+  "layer_norm_epsilon": 1e-05,
+  "model_type": "gpt2",
+  "n_ctx": 1024,
+  "n_embd": 768,
+  "n_head": 12,
+  "n_inner": null,
+  "n_layer": 12,
+  "n_positions": 1024,
+  "no_ln": false,
+  "no_mlp": false,
+  "reorder_and_upcast_attn": false,
+  "resid_pdrop": 0.1,
+  "scale_attn_by_inverse_layer_idx": false,
+  "scale_attn_weights": true,
+  "share_mlp": false,
+  "summary_activation": null,
+  "summary_first_dropout": 0.1,
+  "summary_proj_to_labels": true,
+  "summary_type": "cls_index",
+  "summary_use_proj": true,
+  "task_specific_params": {
+    "text-generation": {
+      "do_sample": true,
+      "max_length": 50
+    }
+  },
+  "transformers_version": "4.37.0.dev0",
+  "use_cache": true,
+  "vocab_size": 50296
+}
+
+  0%|          | 0/7007 [00:00<?, ?it/s]  4%|▍         | 296/7007 [00:00<00:02, 2951.53it/s]  8%|▊         | 593/7007 [00:00<00:02, 2958.16it/s] 13%|█▎        | 889/7007 [00:00<00:02, 2954.90it/s] 17%|█▋        | 1186/7007 [00:00<00:01, 2958.19it/s] 21%|██        | 1482/7007 [00:00<00:01, 2953.30it/s] 25%|██▌       | 1778/7007 [00:00<00:01, 2955.11it/s] 30%|██▉       | 2074/7007 [00:00<00:02, 2113.73it/s] 34%|███▎      | 2353/7007 [00:00<00:02, 2281.53it/s] 38%|███▊      | 2643/7007 [00:01<00:01, 2443.64it/s] 42%|████▏     | 2933/7007 [00:01<00:01, 2566.06it/s] 46%|████▌     | 3221/7007 [00:01<00:01, 2654.02it/s] 50%|█████     | 3511/7007 [00:01<00:01, 2723.65it/s] 54%|█████▍    | 3797/7007 [00:01<00:01, 2762.39it/s] 58%|█████▊    | 4084/7007 [00:01<00:01, 2793.81it/s] 62%|██████▏   | 4375/7007 [00:01<00:00, 2826.33it/s] 67%|██████▋   | 4663/7007 [00:01<00:00, 2841.97it/s] 71%|███████   | 4950/7007 [00:01<00:00, 2835.74it/s] 75%|███████▍  | 5237/7007 [00:01<00:00, 2844.23it/s] 79%|███████▉  | 5528/7007 [00:02<00:00, 2862.93it/s] 83%|████████▎ | 5818/7007 [00:02<00:00, 2871.49it/s] 87%|████████▋ | 6106/7007 [00:02<00:00, 2866.79it/s] 91%|█████████▏| 6396/7007 [00:02<00:00, 2876.44it/s] 95%|█████████▌| 6685/7007 [00:02<00:00, 2879.10it/s]100%|█████████▉| 6976/7007 [00:02<00:00, 2887.07it/s]100%|██████████| 7007/7007 [00:02<00:00, 2759.15it/s]
+lm tokenizer:
+	bos: <|endoftext|> 50256
+	eos: <|endoftext|> 50256
+	pad: <|endoftext|> 50256
+invoking distributed sampler for rank 0
+  0%|          | 0/30 [00:00<?, ?it/s]100%|██████████| 30/30 [00:00<00:00, 2769.07it/s]
+lm.transformer.wte.weight torch.Size([50296, 768])
+lm.transformer.wpe.weight torch.Size([1024, 768])
+lm.transformer.h.0.ln_1.weight torch.Size([768])
+lm.transformer.h.0.ln_1.bias torch.Size([768])
+lm.transformer.h.0.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.0.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.0.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.0.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.0.ln_2.weight torch.Size([768])
+lm.transformer.h.0.ln_2.bias torch.Size([768])
+lm.transformer.h.0.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.0.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.0.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.0.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.1.ln_1.weight torch.Size([768])
+lm.transformer.h.1.ln_1.bias torch.Size([768])
+lm.transformer.h.1.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.1.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.1.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.1.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.1.ln_2.weight torch.Size([768])
+lm.transformer.h.1.ln_2.bias torch.Size([768])
+lm.transformer.h.1.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.1.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.1.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.1.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.2.ln_1.weight torch.Size([768])
+lm.transformer.h.2.ln_1.bias torch.Size([768])
+lm.transformer.h.2.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.2.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.2.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.2.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.2.ln_2.weight torch.Size([768])
+lm.transformer.h.2.ln_2.bias torch.Size([768])
+lm.transformer.h.2.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.2.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.2.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.2.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.3.ln_1.weight torch.Size([768])
+lm.transformer.h.3.ln_1.bias torch.Size([768])
+lm.transformer.h.3.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.3.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.3.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.3.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.3.ln_2.weight torch.Size([768])
+lm.transformer.h.3.ln_2.bias torch.Size([768])
+lm.transformer.h.3.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.3.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.3.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.3.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.4.ln_1.weight torch.Size([768])
+lm.transformer.h.4.ln_1.bias torch.Size([768])
+lm.transformer.h.4.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.4.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.4.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.4.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.4.ln_2.weight torch.Size([768])
+lm.transformer.h.4.ln_2.bias torch.Size([768])
+lm.transformer.h.4.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.4.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.4.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.4.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.5.ln_1.weight torch.Size([768])
+lm.transformer.h.5.ln_1.bias torch.Size([768])
+lm.transformer.h.5.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.5.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.5.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.5.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.5.ln_2.weight torch.Size([768])
+lm.transformer.h.5.ln_2.bias torch.Size([768])
+lm.transformer.h.5.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.5.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.5.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.5.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.6.ln_1.weight torch.Size([768])
+lm.transformer.h.6.ln_1.bias torch.Size([768])
+lm.transformer.h.6.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.6.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.6.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.6.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.6.ln_2.weight torch.Size([768])
+lm.transformer.h.6.ln_2.bias torch.Size([768])
+lm.transformer.h.6.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.6.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.6.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.6.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.7.ln_1.weight torch.Size([768])
+lm.transformer.h.7.ln_1.bias torch.Size([768])
+lm.transformer.h.7.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.7.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.7.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.7.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.7.ln_2.weight torch.Size([768])
+lm.transformer.h.7.ln_2.bias torch.Size([768])
+lm.transformer.h.7.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.7.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.7.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.7.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.8.ln_1.weight torch.Size([768])
+lm.transformer.h.8.ln_1.bias torch.Size([768])
+lm.transformer.h.8.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.8.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.8.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.8.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.8.ln_2.weight torch.Size([768])
+lm.transformer.h.8.ln_2.bias torch.Size([768])
+lm.transformer.h.8.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.8.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.8.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.8.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.9.ln_1.weight torch.Size([768])
+lm.transformer.h.9.ln_1.bias torch.Size([768])
+lm.transformer.h.9.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.9.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.9.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.9.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.9.ln_2.weight torch.Size([768])
+lm.transformer.h.9.ln_2.bias torch.Size([768])
+lm.transformer.h.9.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.9.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.9.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.9.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.10.ln_1.weight torch.Size([768])
+lm.transformer.h.10.ln_1.bias torch.Size([768])
+lm.transformer.h.10.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.10.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.10.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.10.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.10.ln_2.weight torch.Size([768])
+lm.transformer.h.10.ln_2.bias torch.Size([768])
+lm.transformer.h.10.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.10.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.10.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.10.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.11.ln_1.weight torch.Size([768])
+lm.transformer.h.11.ln_1.bias torch.Size([768])
+lm.transformer.h.11.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.11.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.11.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.11.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.11.ln_2.weight torch.Size([768])
+lm.transformer.h.11.ln_2.bias torch.Size([768])
+lm.transformer.h.11.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.11.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.11.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.11.mlp.c_proj.bias torch.Size([768])
+lm.transformer.ln_f.weight torch.Size([768])
+lm.transformer.ln_f.bias torch.Size([768])
+# params:
+38627328|786432|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|total number of optimized params: 124469760
+****************begin training. Total # of steps: 75000 warmup steps: 2000 epochs: 43
+lm tokenizer:
+	bos: <|endoftext|> 50256
+	eos: <|endoftext|> 50256
+	pad: <|endoftext|> 50256
+invoking distributed sampler for rank 1
+lm.transformer.wte.weight torch.Size([50296, 768])
+lm.transformer.wpe.weight torch.Size([1024, 768])
+lm.transformer.h.0.ln_1.weight torch.Size([768])
+lm.transformer.h.0.ln_1.bias torch.Size([768])
+lm.transformer.h.0.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.0.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.0.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.0.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.0.ln_2.weight torch.Size([768])
+lm.transformer.h.0.ln_2.bias torch.Size([768])
+lm.transformer.h.0.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.0.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.0.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.0.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.1.ln_1.weight torch.Size([768])
+lm.transformer.h.1.ln_1.bias torch.Size([768])
+lm.transformer.h.1.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.1.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.1.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.1.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.1.ln_2.weight torch.Size([768])
+lm.transformer.h.1.ln_2.bias torch.Size([768])
+lm.transformer.h.1.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.1.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.1.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.1.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.2.ln_1.weight torch.Size([768])
+lm.transformer.h.2.ln_1.bias torch.Size([768])
+lm.transformer.h.2.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.2.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.2.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.2.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.2.ln_2.weight torch.Size([768])
+lm.transformer.h.2.ln_2.bias torch.Size([768])
+lm.transformer.h.2.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.2.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.2.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.2.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.3.ln_1.weight torch.Size([768])
+lm.transformer.h.3.ln_1.bias torch.Size([768])
+lm.transformer.h.3.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.3.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.3.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.3.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.3.ln_2.weight torch.Size([768])
+lm.transformer.h.3.ln_2.bias torch.Size([768])
+lm.transformer.h.3.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.3.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.3.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.3.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.4.ln_1.weight torch.Size([768])
+lm.transformer.h.4.ln_1.bias torch.Size([768])
+lm.transformer.h.4.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.4.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.4.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.4.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.4.ln_2.weight torch.Size([768])
+lm.transformer.h.4.ln_2.bias torch.Size([768])
+lm.transformer.h.4.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.4.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.4.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.4.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.5.ln_1.weight torch.Size([768])
+lm.transformer.h.5.ln_1.bias torch.Size([768])
+lm.transformer.h.5.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.5.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.5.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.5.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.5.ln_2.weight torch.Size([768])
+lm.transformer.h.5.ln_2.bias torch.Size([768])
+lm.transformer.h.5.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.5.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.5.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.5.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.6.ln_1.weight torch.Size([768])
+lm.transformer.h.6.ln_1.bias torch.Size([768])
+lm.transformer.h.6.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.6.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.6.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.6.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.6.ln_2.weight torch.Size([768])
+lm.transformer.h.6.ln_2.bias torch.Size([768])
+lm.transformer.h.6.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.6.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.6.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.6.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.7.ln_1.weight torch.Size([768])
+lm.transformer.h.7.ln_1.bias torch.Size([768])
+lm.transformer.h.7.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.7.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.7.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.7.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.7.ln_2.weight torch.Size([768])
+lm.transformer.h.7.ln_2.bias torch.Size([768])
+lm.transformer.h.7.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.7.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.7.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.7.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.8.ln_1.weight torch.Size([768])
+lm.transformer.h.8.ln_1.bias torch.Size([768])
+lm.transformer.h.8.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.8.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.8.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.8.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.8.ln_2.weight torch.Size([768])
+lm.transformer.h.8.ln_2.bias torch.Size([768])
+lm.transformer.h.8.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.8.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.8.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.8.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.9.ln_1.weight torch.Size([768])
+lm.transformer.h.9.ln_1.bias torch.Size([768])
+lm.transformer.h.9.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.9.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.9.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.9.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.9.ln_2.weight torch.Size([768])
+lm.transformer.h.9.ln_2.bias torch.Size([768])
+lm.transformer.h.9.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.9.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.9.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.9.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.10.ln_1.weight torch.Size([768])
+lm.transformer.h.10.ln_1.bias torch.Size([768])
+lm.transformer.h.10.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.10.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.10.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.10.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.10.ln_2.weight torch.Size([768])
+lm.transformer.h.10.ln_2.bias torch.Size([768])
+lm.transformer.h.10.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.10.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.10.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.10.mlp.c_proj.bias torch.Size([768])
+lm.transformer.h.11.ln_1.weight torch.Size([768])
+lm.transformer.h.11.ln_1.bias torch.Size([768])
+lm.transformer.h.11.attn.c_attn.weight torch.Size([768, 2304])
+lm.transformer.h.11.attn.c_attn.bias torch.Size([2304])
+lm.transformer.h.11.attn.c_proj.weight torch.Size([768, 768])
+lm.transformer.h.11.attn.c_proj.bias torch.Size([768])
+lm.transformer.h.11.ln_2.weight torch.Size([768])
+lm.transformer.h.11.ln_2.bias torch.Size([768])
+lm.transformer.h.11.mlp.c_fc.weight torch.Size([768, 3072])
+lm.transformer.h.11.mlp.c_fc.bias torch.Size([3072])
+lm.transformer.h.11.mlp.c_proj.weight torch.Size([3072, 768])
+lm.transformer.h.11.mlp.c_proj.bias torch.Size([768])
+lm.transformer.ln_f.weight torch.Size([768])
+lm.transformer.ln_f.bias torch.Size([768])
+# params:
+38627328|786432|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|1769472|589824|2359296|2359296|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|2304|768|768|768|3072|768|768|768|total number of optimized params: 124469760
+****************begin training. Total # of steps: 75000 warmup steps: 2000 epochs: 43
+I'm rank 0. I'll continue to print.
+I'm rank 1. I'm muted from now on.
+Epoch:   0%|          | 0/43 [00:00<?, ?it/s]Epoch 1 of 43:   0%|          | 0/43 [00:00<?, ?it/s]
+Running Epoch 0 of 43:   0%|          | 0/1752 [00:00<?, ?it/s][A
+Epochs 1/43. LM:   11.1621:   0%|          | 0/1752 [00:01<?, ?it/s][A/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:138: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+
+Epochs 1/43. LM:   11.1621:   0%|          | 1/1752 [00:01<34:51,  1.19s/it][A
+Epochs 1/43. LM:   10.3516:   0%|          | 1/1752 [00:01<34:51,  1.19s/it][AEpochs 1/43. LM:   10.3516:   0%|          | 1/1752 [00:01<38:24,  1.32s/it]
+Epoch 1 of 43:   0%|          | 0/43 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/s220331/GROK/Thesis/main_multy_GPU.py", line 214, in <module>
+    main()
+  File "/home/s220331/GROK/Thesis/main_multy_GPU.py", line 198, in main
+    model.train_model(train_data=train_df, eval_data=eval_df, test_data=test_df, output_dir=args.output_dir,
+  File "/home/s220331/GROK/Thesis/simpletransformers/simpletransformers/seq2seq/seq2seq_model.py", line 438, in train_model
+    global_step, training_details = self.train(
+  File "/home/s220331/GROK/Thesis/simpletransformers/simpletransformers/seq2seq/seq2seq_model.py", line 837, in train
+    scaler.step(optimizer)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/cuda/amp/grad_scaler.py", line 341, in step
+    retval = self._maybe_opt_step(optimizer, optimizer_state, *args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/cuda/amp/grad_scaler.py", line 288, in _maybe_opt_step
+    retval = optimizer.step(*args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/optim/lr_scheduler.py", line 68, in wrapper
+    return wrapped(*args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/optim/optimizer.py", line 140, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/optim/adamw.py", line 147, in step
+    state['exp_avg'] = torch.zeros_like(p, memory_format=torch.preserve_format)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 15.72 GiB total capacity; 2.16 GiB already allocated; 14.69 MiB free; 2.24 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 730954 closing signal SIGTERM
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 730953) of binary: /home/s220331/.conda/envs/my_transformers_env/bin/python
+Traceback (most recent call last):
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py", line 195, in <module>
+    main()
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py", line 191, in main
+    launch(args)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launch.py", line 176, in launch
+    run(args)
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/run.py", line 753, in run
+    elastic_launch(
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 132, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/s220331/.conda/envs/my_transformers_env/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 246, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+main_multy_GPU.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-12-04_01:13:55
+  host      : comp-gpu01.compute.dtu.dk
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 730953)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

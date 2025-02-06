@@ -166,6 +166,7 @@ class GPT2Tokenizer(PreTrainedTokenizer):
         unk_token="<|endoftext|>",
         bos_token="<|endoftext|>",
         eos_token="<|endoftext|>",
+        mask_token="<|mask|>",       
         pad_token=None,
         add_prefix_space=False,
         add_bos_token=False,
@@ -175,7 +176,11 @@ class GPT2Tokenizer(PreTrainedTokenizer):
         eos_token = AddedToken(eos_token, lstrip=False, rstrip=False) if isinstance(eos_token, str) else eos_token
         unk_token = AddedToken(unk_token, lstrip=False, rstrip=False) if isinstance(unk_token, str) else unk_token
         pad_token = AddedToken(pad_token, lstrip=False, rstrip=False) if isinstance(pad_token, str) else pad_token
-
+        ##################################### mio############################################################################################
+        
+        mask_token = AddedToken(mask_token, lstrip=False, rstrip=False) if isinstance(pad_token, str) else pad_token  # Handle <mask>
+        self.mask_token = mask_token
+        ##################
         self.add_bos_token = add_bos_token
 
         with open(vocab_file, encoding="utf-8") as vocab_handle:
