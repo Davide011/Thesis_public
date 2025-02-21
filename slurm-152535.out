@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/s220331/GROK/Thesis/causal_tracing_comparison.py", line 329, in <module>
+    main()
+  File "/home/s220331/GROK/Thesis/causal_tracing_comparison.py", line 35, in main
+    with open("data/{}/train.json".format(dataset)) as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'data//home/s220331/GROK/Thesis/Comparison_DATA/comparison.1000.12.6/train.json'

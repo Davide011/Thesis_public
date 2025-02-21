@@ -130,6 +130,51 @@ def Acc_graph(data , data_sharing , title_1= 'Model Accuracy over Optimization S
     plt.show()
 
 
+################
+
+
+import matplotlib.pyplot as plt
+#import seaborn as sns
+
+def Acc_1(data, log=True):
+    optimization_steps = [int(checkpoint.split('-')[1]) for checkpoint, _ in data]
+    train_id = [dict(results)['train_inferred'] for _, results in data]  
+    test_id = [dict(results)['test_inferred_iid'] for _, results in data]
+    test_ood = [dict(results)['test_inferred_ood'] for _, results in data]
+
+    # Use Accent colormap
+    accent_colors = plt.get_cmap("Accent").colors
+
+    set3_cmap = plt.get_cmap("Set3")
+    set1_cmap = plt.get_cmap("Set2")
+    train_color = set3_cmap(8) #'#A9A9A9' #'#A9A9A9' #accent_colors[6]  # Soft Gray
+    test_id_color =  accent_colors[1] #set3_cmap(2) #accent_colors[3]  # Violet
+    test_ood_color = set1_cmap(5)# set3_cmap(11) #set1_cmap(5) #"#E41A1C" #'#FFD700' #accent_colors[1]  # Yellow
+
+    # Create the figure
+    plt.figure(figsize=(8, 5))
+
+    # Plot the data with Accent colormap colors
+    plt.plot(optimization_steps, train_id, 'o-', label='Train (ID)', color=train_color)
+    plt.plot(optimization_steps, test_id, 's-', label='Test (ID)', color=test_id_color)
+    plt.plot(optimization_steps, test_ood, '^-', label='Test (OOD)', color=test_ood_color)
+
+    # Labels and title
+    plt.ylabel('Accuracy')
+    plt.xlabel('Optimization Step (Log Scale)' if log else 'Optimization Step')
+    #plt.title('Accuracy Composition', fontsize=13, fontweight='bold')
+
+    # Set log scale if required
+    if log:
+        plt.xscale('log')
+
+    # Legend and grid
+    plt.legend()
+    plt.grid(True)
+
+    # Show plot
+    plt.show()
+
 ######################################
 
 def dic_scores( dir, check = False, fn = 'all_items.json',file_name = 'Accuracy_Loss.ipynb'):

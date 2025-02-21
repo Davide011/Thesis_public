@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=proova      # Job name
+#SBATCH --job-name 0.03_sharing_loro_big      # Job name
 #SBATCH --output=/scratch/davide/sbatch_logs/%x_%j.out                 # Output file with job name and ID
 #SBATCH --error=/scratch/davide/sbatch_logs/%x_%j.err                  # Error file with job name and ID
 #SBATCH --partition=titans                    # Specify the GPU partition
@@ -23,9 +23,9 @@ source activate my_transformers_env
 # Set environment variables
 MODEL_PATH=gpt2
 DATASET=/home/s220331/GROK/Thesis/data/composition.2000.200.12.6/
-WEIGHT_DECAY=0.3
+WEIGHT_DECAY=0.03
 N_LAYERS=4                  # smaller models take more time to generalize
-OUTPUT_DIR=/dtu-compute/s220331/composition/sharing_BIG/
+OUTPUT_DIR=/dtu-compute/s220331/composition/sharing_BIG_WD_0_03/
 
 # Get the number of GPUs allocated by SLURM
 NUM_GPUS=$(echo $CUDA_VISIBLE_DEVICES | tr ',' '\n' | wc -l)
@@ -54,6 +54,8 @@ srun python -m torch.distributed.launch --nproc_per_node=$NUM_GPUS --master_port
     --init_weights \
     --add_tokens \
     --n_layer $N_LAYERS \
+    --add_recurrence \
+    
 
 
 

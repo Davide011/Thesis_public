@@ -25,7 +25,7 @@ MODEL_PATH=gpt2
 DATASET=/home/s220331/GROK/Thesis/data/composition.2000.200.12.6/
 WEIGHT_DECAY=0.03
 N_LAYERS=8                  # smaller models take more time to generalize
-OUTPUT_DIR=/dtu-compute/s220331/composition/outputs_BIG_new/
+OUTPUT_DIR=/dtu-compute/s220331/composition/outputs_BIG_new_alpha_0_15/
 
 # Get the number of GPUs allocated by SLURM
 NUM_GPUS=$(echo $CUDA_VISIBLE_DEVICES | tr ',' '\n' | wc -l)
@@ -53,7 +53,8 @@ srun python -m torch.distributed.launch --nproc_per_node=$NUM_GPUS --master_port
     --predict_during_training \
     --init_weights \
     --add_tokens \
-    --n_layer $N_LAYERS
+    --n_layer $N_LAYERS \
+    --alpha 0.15 \
 
 
 

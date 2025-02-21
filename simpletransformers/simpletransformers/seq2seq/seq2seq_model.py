@@ -175,6 +175,7 @@ class Seq2SeqModel:
         add_memory=False,
         add_recurrence=False,
         recurrence_iteration_3=False,
+        alpha: float = 1.0,  # Default to 1.0,
         re_embed=False,
         re_embed_temp=None,
         cuda_device=-1,
@@ -185,6 +186,9 @@ class Seq2SeqModel:
         print("numpy version:", np.__version__)
         print("torch version:", torch.__version__)
         print("transformers version:", transformers.__version__)
+
+
+        self.alpha = alpha
 
         ### load & update all general args
         self.args = self._load_model_args(model_name)
@@ -339,7 +343,7 @@ class Seq2SeqModel:
                 print("***in recurrence mode  3 recurrences!!***")
                 self.language_model.config.recurrence_iteration_3 = recurrence_iteration_3
 
-
+        self.language_model.config.alpha = self.alpha
         if re_embed:
             assert add_recurrence
             print("***re-embedding***")
@@ -374,6 +378,7 @@ class Seq2SeqModel:
         print(ddp_args)
         print("lm config:")
         print(self.language_model.config)
+        print("self.alpha:", self.alpha)
 
 
     def train_model(

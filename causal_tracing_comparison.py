@@ -26,13 +26,20 @@ def main():
     args = parser.parse_args()
     dataset, model_dir = args.dataset, args.model_dir
 
-    directory = os.path.join(model_dir, "{}_{}_{}".format(dataset, args.wd, args.num_layer))
+    directory = os.path.join(model_dir)  # directory of the model checkpoints chamged to make it more explicit
 
-    device = torch.device('cuda:7')  
+    #device = torch.device('cuda:7')  
+    # Automatically select the first available GPU from CUDA_VISIBLE_DEVICES  ###################change from me 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # Print which device is being used
+    print(f"Using device: {device}")
+    if torch.cuda.is_available():
+        print(f"GPU: {torch.cuda.get_device_name(torch.cuda.current_device())}")
 
     all_atomic = set()
     atomic_dict = dict()
-    with open("data/{}/train.json".format(dataset)) as f:
+    with open("{}/train.json".format(dataset)) as f:
         train_items = json.load(f)
     for item in tqdm(train_items):
         temp = item['target_text'].strip("><").split("><")
@@ -94,7 +101,7 @@ def main():
         temp.sort(key=lambda var: var[1], reverse=True)
         return [var[0] for var in temp].index(token)
 
-    with open("data/{}/test.json".format(dataset)) as f:
+    with open("{}/test.json".format(dataset)) as f:
         pred_data = json.load(f)
     d = dict()
     for item in pred_data:

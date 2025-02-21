@@ -38,7 +38,7 @@ def main():
 
     parser.add_argument("--recurrence_iteration_3", action="store_true", help="Whether run the layers twice.")
     parser.add_argument("--my_eval_data", action="store_true", help="Whether run the layers twice.")
-    parser.add_argument("--scale_forward", default=1, type=float, help="scale forwardd pass")
+    parser.add_argument("--alpha", default=1, type=float, help="scale forwardd pass")
 
 
     parser.add_argument("--re_embed", action="store_true", help="Whether add re-embedding during recurrence.")
@@ -198,7 +198,8 @@ def main():
         recurrence_iteration_3= args.recurrence_iteration_3,
         re_embed=args.re_embed,
         re_embed_temp=args.re_embed_temp,
-        relation_mean_shift=args.relation_mean_shift
+        relation_mean_shift=args.relation_mean_shift,
+        alpha=args.alpha
     )
     #scale_forward=args.scale_forward,   # added by me davide
     

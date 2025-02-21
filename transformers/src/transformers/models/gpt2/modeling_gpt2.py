@@ -781,6 +781,7 @@ class GPT2Model(GPT2PreTrainedModel):
         self.post_init()
         self.conf = config
 
+
     @add_start_docstrings(PARALLELIZE_DOCSTRING)
     def parallelize(self, device_map=None):
         # Check validity of device_map
@@ -863,6 +864,7 @@ class GPT2Model(GPT2PreTrainedModel):
         return_dict: Optional[bool] = None,
         add_recurrence=False,
         recurrence_iteration_3 = False ,
+        alpha=1.0,
         re_embed=False,
         re_embed_temp=None,
     ) -> Union[Tuple, BaseModelOutputWithPastAndCrossAttentions]:
@@ -1836,6 +1838,15 @@ class GPT2LMHeadModel(GPT2PreTrainedModel):
 
         lm_logits = self.lm_head(hidden_states)
 
+        ##check if the scaling factor work
+        # Apply alpha scaling (if config.alpha is set)
+        if hasattr(self.config, 'alpha'):
+            alpha = self.config.alpha
+            print(f"Alpha scaling found. Using alpha = {alpha}")
+        else:
+            alpha = 1.0
+            print("Alpha scaling not found in config. Defaulting to alpha = 1.0")
+        lm_logits = alpha * lm_logits
         loss = None
         if labels is not None:
             # move labels to correct device to enable model parallelism
@@ -1843,6 +1854,7 @@ class GPT2LMHeadModel(GPT2PreTrainedModel):
             # Shift so that tokens < n predict n
             shift_logits = lm_logits[..., :-1, :].contiguous()
             shift_labels = labels[..., 1:].contiguous()
+            
             # Flatten the tokens
             loss_fct = CrossEntropyLoss()
             loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
