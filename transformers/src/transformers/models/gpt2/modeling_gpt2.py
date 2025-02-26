@@ -1845,7 +1845,7 @@ class GPT2LMHeadModel(GPT2PreTrainedModel):
             print(f"Alpha scaling found. Using alpha = {alpha}")
         else:
             alpha = 1.0
-            print("Alpha scaling not found in config. Defaulting to alpha = 1.0")
+            #print("Alpha scaling not found in config. Defaulting to alpha = 1.0")
         lm_logits = alpha * lm_logits
         loss = None
         if labels is not None:
