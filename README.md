@@ -7,7 +7,8 @@
 This additional work will provide the user with all the experimental setup used during the research as well as examples of slurm files accellerate reproducibility on HPC clusters.
 Importan to notice, that this kind of files are cluster specific, which means it could be some modifications has to been done to adapt to the precise machines, however, it could be used as a starting point to a faster implementation. (all files which end with sh are slurm jobs)
 
--a cleaned and refined step by step outline is work-in progress.
+
+All the used files during the research process are available in this repository. A curated step by step version of the setup will be provided after the thesis defence the 26/03/25, due to time mangaement constrains. 
 
 
 
