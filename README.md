@@ -1,6 +1,7 @@
 ## The Thesis experiment outline follows the normal base file structure with the addition of the following relevant files:
 
 - !!! Remember to use the new formatted file: "main-multy_GPU.py" based on the previous "main.py" file, to enable a straightforward run using more than 1 GPU.!!!
+- 
 In addition, it is importan to notice that some changes in the code of "transformers" and "simpletransformers" for the implementation of additional features were done. It is highly reccomanded to run all the experiemntla code on the resources provided in this respository. The original repository do not enable all the experimental procedures as it is.
 
 This additional work will provide the user with all the experimental setup used during the research as well as examples of slurm files accellerate reproducibility on HPC clusters.
