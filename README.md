@@ -5,11 +5,11 @@
     In addition, it is importan to notice that some changes in the code of "transformers" and "simpletransformers" for the implementation of additional features were done. It is highly         reccomanded to run all the experiemntla code on the resources provided in this respository. The original repository do not enable all the experimental procedures as it is.
 
 This additional work will provide the user with all the experimental setup used during the research as well as examples of slurm files accellerate reproducibility on HPC clusters.
-Importan to notice, that this kind of files are cluster specific, which means it could be some modifications has to been done to adapt to the precise machines, however, it could be used as a starting point to a faster implementation. (all files which end with sh are slurm jobs)
+It is important to note that these files are specific to clusters, meaning some modifications may be necessary to tailor them to the exact machines. Nevertheless, they can serve as a starting point for a quicker implementation (all files which end with sh are slurm jobs).
 
 
 All the used files during the research process are available in this repository. \
-A curated step by step version of the setup will be provided after the thesis defence the 26/03/25, due to time mangaement constrains. 
+A curated step by step version of the setup will be provided the week after the thesis defence the 26/03/25, due to time mangaement constrains. 
 
 
 
