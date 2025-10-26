@@ -8,8 +8,7 @@ This additional work will provide the user with all the experimental setup used 
 It is important to note that these files are specific to clusters, meaning some modifications may be necessary to tailor them to the exact machines. Nevertheless, they can serve as a starting point for a quicker implementation (all files which end with sh are slurm jobs).
 
 
-All the used files during the research process are available in this repository. \
-A curated step by step version of the setup will be provided the week after the thesis defence the 26/03/25, due to time mangaement constrains. 
+All the used files during the research process are available in this repository.
 
 
 
