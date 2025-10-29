@@ -1,3 +1,12 @@
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/Deep--Learning-PyTorch-ee4c2c.svg)](https://pytorch.org/)
+[![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-FF6F61.svg)](https://huggingface.co/docs/transformers/index)
+[![SimpleTransformers](https://img.shields.io/badge/Transformers-SimpleTransformers-00bfff.svg)](https://simpletransformers.ai/)
+[![Causal Tracing](https://img.shields.io/badge/Analysis-Causal_Tracing-6f42c1.svg)](https://arxiv.org/abs/2302.08860) 
+[![Logit Lens](https://img.shields.io/badge/Analysis-Logit_Lens-ff69b4.svg)](https://arxiv.org/abs/2301.13177)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
+
+
 ## The Thesis experiment outline follows the normal base file structure with the addition of the following relevant files:
 
 - !!! Remember to use the new formatted file: "main-multy_GPU.py" based on the previous "main.py" file, to enable a straightforward run using more than 1 GPU.!!!
