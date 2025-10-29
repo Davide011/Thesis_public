@@ -1,11 +1,16 @@
+# Can LLMs Perform Logical Reasoning?  
+## Investigating the Compositional Gap in Transformer Model Architectures  
+### Master Thesis
+
+
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/Deep--Learning-PyTorch-ee4c2c.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-FF6F61.svg)](https://huggingface.co/docs/transformers/index)
 [![SimpleTransformers](https://img.shields.io/badge/Transformers-SimpleTransformers-00bfff.svg)](https://simpletransformers.ai/)
-[![Causal Tracing](https://img.shields.io/badge/Analysis-Causal_Tracing-6f42c1.svg)](https://arxiv.org/abs/2302.08860) 
+[![Causal Tracing](https://img.shields.io/badge/Analysis-Causal_Tracing-6f42c1.svg)](https://arxiv.org/abs/2302.08860)
 [![Logit Lens](https://img.shields.io/badge/Analysis-Logit_Lens-ff69b4.svg)](https://arxiv.org/abs/2301.13177)
+[![HPC](https://img.shields.io/badge/Compute-HPC_Clusters-008000.svg)](https://en.wikipedia.org/wiki/High-performance_computing)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
-
 
 ## The Thesis experiment outline follows the normal base file structure with the addition of the following relevant files:
 
