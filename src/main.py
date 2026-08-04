@@ -4,7 +4,7 @@ import os
 import json
 
 from simpletransformers.seq2seq import Seq2SeqModel
-from utils import read_data_source_target
+from src.utils import read_data_source_target
 import torch
 torch.cuda.empty_cache()
 

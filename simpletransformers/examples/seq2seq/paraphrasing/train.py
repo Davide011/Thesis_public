@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from simpletransformers.seq2seq import Seq2SeqModel, Seq2SeqArgs
 
-from utils import load_data, clean_unnecessary_spaces
+from src.utils import load_data, clean_unnecessary_spaces
 
 
 logging.basicConfig(level=logging.INFO)

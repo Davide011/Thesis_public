@@ -6,7 +6,7 @@ import wandb
 from sklearn.metrics import accuracy_score
 
 from simpletransformers.classification import ClassificationArgs, ClassificationModel
-from utils import load_rte_data_file
+from src.utils import load_rte_data_file
 
 layer_parameters = {
     f"layer_{i}-{i + 6}": {"min": 0.0, "max": 5e-5} for i in range(0, 24, 6)
